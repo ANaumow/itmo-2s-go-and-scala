@@ -1,0 +1,22 @@
+image: sbtscala/scala-sbt:openjdk-18.0.2.1_1.8.1_3.2.1
+
+stages:
+  - build
+  - test
+
+variables:
+  SBT_OPTS: "-Xmx1G -XX:MaxMetaspaceSize=512m -XX:ReservedCodeCacheSize=512m"
+
+before_script:
+  - sbt clean update
+  - export "some_global_var=some_value"
+
+build:
+  stage: build
+  script:
+    - sbt "scalafmtSbtCheck; scalafmtCheckAll; compile"
+
+test:
+  stage: test
+  script:
+    - sbt test

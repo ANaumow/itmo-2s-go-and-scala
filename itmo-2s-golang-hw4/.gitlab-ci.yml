@@ -1,0 +1,17 @@
+image: golang:latest
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - gofmt -w .
+    - go build cmd/app/main.go
+
+test_mark:
+  stage: test
+  image: golang:latest
+  script:
+    - go test ./pkg/mark -v

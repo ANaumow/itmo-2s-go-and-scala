@@ -1,0 +1,18 @@
+image: hseeberger/scala-sbt:11.0.12_1.5.5_2.13.6
+
+stages:
+  - build
+  - test
+
+before_script:
+  - sbt update
+
+build:
+  stage: build
+  script:
+    - sbt compile
+
+test:
+  stage: test
+  script:
+    - sbt test

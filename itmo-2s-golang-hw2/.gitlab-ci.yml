@@ -1,0 +1,16 @@
+image: golang:latest
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - gofmt -w .
+    - go build
+
+test:
+  stage: test
+  script:
+    - go test
